@@ -1,0 +1,13 @@
+<div class="navbar">
+ <ul>
+  <li><a href='/'> Survey </a></li> 
+  <li>
+    <% if current_user %>
+      <a href='/logout'>Logout</a>
+      <a href='/createsurvey'>Create Survey</a>
+    <% else %>
+      <a href='/login'>Login</a>
+    <% end %>
+  </li> 
+  </ul>
+</div>
