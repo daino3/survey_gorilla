@@ -30,8 +30,24 @@ post '/create_question' do
   create_choices(params[:choice_input], @question.id)
 
   if params[:submit] == "Finish"
-    erb :view_survey
+    redirect "/view_survey/#{@survey.id}"
   elsif params[:submit] == "Add Question"
     erb :create_question
   end
+end
+
+get '/take_survey/:survey_id' do
+  @survey = Survey.find(params[:survey_id])
+  erb :take_survey
+end
+
+post '/take_survey' do
+  @survey = Survey.find(params[:survey_id])
+  create_responses(params[:response_input])#, current_user.id)
+  redirect "/view_survey/#{@survey.id}"
+end
+
+get '/view_survey/:survey_id' do
+  @survey = Survey.find(params[:survey_id])
+  erb :view_survey
 end
