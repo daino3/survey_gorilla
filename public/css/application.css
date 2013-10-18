@@ -1,3 +1,8 @@
+html {
+  font-family: Verdana;
+}
+
+
 .container {
   margin: 20px auto;
   width: 600px;
@@ -35,4 +40,33 @@ input[type="submit"] {
 
 .spacer {
   height: 30px;
+}
+
+.navbar {
+  background: black;
+  padding: 5px 0px 5px 0px;
+}
+
+.navbar ul li {
+  display:inline;
+
+ } 
+
+.navbar ul li a{
+  text-decoration: none;
+  color: white;
+ }
+
+a:hover{
+  font-weight: bold;
+ }
+
+.navbar li:before { content: "| "; color: white;}
+.navbar li:first-child:before { content: ""; color: white;}
+
+input {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  box-shadow:inset 0 0 2px #000000;
 }
