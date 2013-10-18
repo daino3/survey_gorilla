@@ -10,7 +10,7 @@ end
 
 post '/create_survey' do
   puts params
-  @survey = Survey.create(title: params[:survey_title]) #, user_id: session[:user_id])
+  @survey = Survey.create(title: params[:survey_title], creator_id: current_user.id)
   
   if params[:image] 
     @photo = Photo.create(title: params[:image_title], file: params[:image])
@@ -43,7 +43,7 @@ end
 
 post '/take_survey' do
   @survey = Survey.find(params[:survey_id])
-  create_responses(params[:response_input])#, current_user.id)
+  create_responses(params[:response_input], current_user.id)
   redirect "/view_survey/#{@survey.id}"
 end
 
