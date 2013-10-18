@@ -16,7 +16,11 @@
       <% choice_responses = choice.responses.count %>
         <tr>
           <td><%= choice.option %></td>
-          <td><%= (((choice_responses.to_f/total_responses.to_f)*100).round(0)) %>%</td>
+          <% if choice_responses > 0 %>
+            <td><%= (((choice_responses.to_f/total_responses.to_f)*100).round(0)) %>%</td>
+          <% else %>
+            <td>0%</td>
+          <% end %>
         </tr>
     <% end %>
   <% end %>

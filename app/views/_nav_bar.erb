@@ -5,7 +5,7 @@
     <% if current_user %>
       <a href='/logout'>Logout</a>
       <a href='#'>Profile</a>
-      <a href='/createsurvey/<%= @user.id %>'>Create Survey</a>
+      <a href='/createsurvey/<%= current_user.id %>'>Create Survey</a>
     <% else %>
       <a href='/login'>Login</a>
     <% end %>
