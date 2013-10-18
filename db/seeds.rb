@@ -21,12 +21,14 @@ end
 end
 
 
-# 1000.times do
-#   takensurveys = Survey.find(rand(1..150)).takensurveys << Takensurvey.create(user_id: rand(1..150), survey_id: rand(1..150))
-#   survey = Survey.find(takensurveys.last.survey_id)
-#     survey.questions.each do |question|
-#       choices = Question.find(question.id).choices
-#       Response.create(choice_id: choice.id)
-#   end
-# end
+1000.times do
+  takensurveys = Survey.find(rand(1..150)).takensurveys << Takensurvey.create(user_id: rand(1..50), survey_id: rand(1..150))
+  survey = Survey.find(takensurveys.last.survey_id)
+    survey.questions.each do |question|
+      choices = Question.find(question.id).choices
+      choices.each do |choice|
+      Response.create(choice_id: choice.id)
+    end
+  end
+end
 
