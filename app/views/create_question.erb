@@ -1,0 +1,10 @@
+<div class="container">
+  <h1><%= @survey.title %></h1>
+  <p><img src="<%= @photo.file.url(:thumb) %>"></p>
+  <form action="create_question" method="post">
+    <label for="question_input">Question:</label><br>
+    <input type="text" name="question" id="question_input"><br><br>
+    
+    <input type="submit" value="submit">
+  </form>
+</div>
