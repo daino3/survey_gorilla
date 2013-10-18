@@ -20,8 +20,7 @@ post '/login' do
   erb :profile
 end
 
-
-post '/newuser' do
+post '/signup' do
   @user = User.create(params[:newuser])
   redirect "/profile/#{@user.id}"
 end
