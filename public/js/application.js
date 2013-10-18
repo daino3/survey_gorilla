@@ -1,7 +1,13 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
-
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  var varCount = 1
+  //remove a textfield    
+  $('form').on('click', '.removeVar', function(){
+     $(this).parent().remove();
+  });
+  //add a new node
+  $('#addVar').on('click', function(){
+  varCount++;
+  $node = '<p><label for="choice_input'+varCount+'">Choice: </label><input type="text" name="choice_input['+varCount+']" id="choice_input'+varCount+'"><span class="removeVar">Remove Choice</span></p>';
+  $(this).parent().before($node);
+  });
 });

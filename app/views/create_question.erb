@@ -1,10 +1,23 @@
 <div class="container">
   <h1><%= @survey.title %></h1>
-  <p><img src="<%= @photo.file.url(:thumb) %>"></p>
+  <p><img src="<%= @photo.file.url(:thumb) if @photo %>"></p>
   <form action="create_question" method="post">
     <label for="question_input">Question:</label><br>
     <input type="text" name="question" id="question_input"><br><br>
     
-    <input type="submit" value="submit">
+    <input type="hidden" name="survey" value="<%= @survey.id %>">
+    <p>
+      <label for="choice_input1">Choice: </label>
+      <input type="text" name="choice_input[1]" id="choice_input1">
+    </p>
+
+    <p><span id="addVar">Add Choice</span></p>
+
+    <input type="submit" name="submit" value="Finish">
+    <input type="submit" name="submit" value="Add Question">
+
   </form>
 </div>
+
+<!-- <lable for="choice_input1">Choice:</label><br>
+    <input type="text" name="choice" id="choice_input1"><br><br> -->
