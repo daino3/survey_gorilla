@@ -6,20 +6,20 @@ class User < ActiveRecord::Base
 
   has_secure_password  
 
-  include BCrypt
+  # include BCrypt
 
-  def password
-   @password ||= Password.new(password_digest)
-  end
+  # def password
+  #  @password ||= Password.new(password_digest)
+  # end
 
-  def password=(new_password)
-   @password = Password.create(new_password)
-   self.password_digest = @password
-  end
+  # def password=(new_password)
+  #  @password = Password.create(new_password)
+  #  self.password_digest = @password
+  # end
 
-  def self.authenticate(email, password)
-     user = User.find_by_email(email)
-     return user if user && (user.password == password)
-     nil
-  end
+  # def self.authenticate(email, password)
+  #    user = User.find_by_email(email)
+  #    return user if user && (user.password == password)
+  #    nil
+  # end
 end
