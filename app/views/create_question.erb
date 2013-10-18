@@ -1,4 +1,4 @@
-<div class="container">
+
   <h1><%= @survey.title %></h1>
   <p><img src="<%= @photo.file.url(:thumb) if @photo %>"></p>
   <form action="create_question" method="post">
@@ -17,7 +17,7 @@
     <input type="submit" name="submit" value="Add Question">
 
   </form>
-</div>
+
 
 <!-- <lable for="choice_input1">Choice:</label><br>
     <input type="text" name="choice" id="choice_input1"><br><br> -->

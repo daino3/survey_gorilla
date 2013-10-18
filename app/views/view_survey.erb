@@ -1,4 +1,4 @@
-<div class="container">
+
   <h1><%= @survey.title %></h1>
   <% if @survey.photo %>
     <img src="<%= @survey.photo.file.url(:thumb) %>">
@@ -25,4 +25,4 @@
     <% end %>
   <% end %>
   </table>
-</div>
+
