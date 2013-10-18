@@ -22,6 +22,7 @@ end
 
 post '/signup' do
   @user = User.create(params[:newuser])
-  redirect "/profile/#{@user.id}"
+  # redirect "/profile/#{@user.id}"
+  # puts params
 end
 
