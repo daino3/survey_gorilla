@@ -2,9 +2,15 @@
   User.create(username: Faker::Name.name, email: Faker::Internet.email, password: "123", password_confirmation: "123") #make users
 end
 
+#TESTS in rake console
+#User.last
+
+
 150.times do
   User.find(rand(1..50)).createdsurveys << Survey.create(title: Faker::Lorem.words(num = 3, supplemental = false).join(" "))#), url: random_string) 
 end
+
+#User.last.surve
 
 450.times do 
   #putting questions in each survey - at random
@@ -27,7 +33,7 @@ end
     survey.questions.each do |question|
       choices = Question.find(question.id).choices
       choices.each do |choice|
-      Response.create(choice_id: choice.id)
+      Response.create(choice_id: choice.id, user_id: rand(1..50))
     end
   end
 end
