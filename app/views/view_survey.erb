@@ -1,0 +1,19 @@
+<div class="container">
+  <h1><%= @survey.title %></h1>
+  <% if @survey.photo %>
+    <img src="<%= @survey.photo.file.url(:thumb) %>">
+  <% end %>
+  <% @survey.questions.each do |question| %>
+    <p><%= question.prompt %></p>
+    <% total_responses = question
+    <ul>
+      <% question.choices.each do |choice| %>
+        <li><%= choice.option %></li>
+        <%= total_responses = choice.responses.count %>
+        <% choice.responses.each do |response| %>
+          <span><%= response.</span>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
