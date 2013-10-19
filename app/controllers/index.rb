@@ -1,6 +1,6 @@
 get '/' do
   if current_user
-    redirect '/create_survey'
+    erb :home
   else
     erb :index
   end

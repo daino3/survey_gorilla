@@ -1,0 +1,9 @@
+<h1>Welcome Back!</h1>
+<h2>Surveys you've created</h2>
+<% current_user.createdsurveys.each do |survey| %>
+  <p><%= survey.title %></p>
+<% end %>
+<h2>Surveys you've taken</h2>
+<% current_user.takensurveys.each do |survey| %>
+  <p><%= survey.title %></p>
+<% end %>
