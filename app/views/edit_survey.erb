@@ -1,0 +1,30 @@
+<h1>Edit <%= @survey.title %></h1>
+  <form action="/edit_survey" method="post" id="edit_survey" enctype="multipart/form-data">
+    <div id="edit_survey_left">
+      <label for="title_input">Survey Title:</label><br>
+      <input type="text" name="survey_title" id="title_input" value="<%= @survey.title %>"><br><br>
+      <% if @survey.photo %>
+        <label for="image_upload">Change Image:</label><br>
+        <img src="<%= @survey.photo.file.url(:thumb) %>"><br>
+        <input type="file" name="image" id="image_upload"><br><br>
+        <label for="image_title">Image Title:</label><br>
+        <input type="text" name="image_title" id="image_title" value="<%= @survey.photo.title if @survey.photo && @survey.photo.title %>"><br><br>
+      <% end %>
+    </div>
+    <div id="edit_survey_right">
+      <% @survey.questions.each do |question| %>
+        <div class="edit_survey_question">
+          <p>
+            <label for="question_input">Question:</label>
+            <input type="text" name="question[<%= question.id %>]" id="question_input" value="<%= question.prompt %>" disabled="disabled">
+            <span class="deleteQ">Delete Question</span>
+            <span style="display: none;"><%= question.id %></span>
+          </p>
+          
+        </div>
+      <% end %>
+    </div>
+    <input type="hidden" name="survey" value="<%= @survey.id %>">
+    <p id="clear"></p>
+    <input type="submit" value="Update">
+  </form>

@@ -2,7 +2,9 @@ html {
   font-family: Verdana;
 }
 
-
+a {
+  text-decoration: none;
+}
 .container {
   margin: 20px auto;
   width: 960px;
@@ -14,18 +16,26 @@ th {
   text-align: left;
 }
 
-#addVar {
+.addVar {
   cursor: pointer;
   background-color: green;
-  padding: 5px;
+  padding: 10px 5px;
   color: white;
   border-radius: 5px;
 }
 
-.removeVar {
+#addQ {
+  cursor: pointer;
+  background-color: orange;
+  padding: 10px 5px;
+  color: white;
+  border-radius: 5px;
+}
+
+.removeVar, .removeQ, .deleteQ {
   cursor: pointer;
   background-color: red;
-  padding: 5px;
+  padding: 10px 5px;
   color: white;
   margin-left: 10px;
   border-radius: 5px;
@@ -34,7 +44,7 @@ th {
 input[type="submit"] {
   border: none;
   background-color: #008cd2;
-  padding: 5px;
+  padding: 10px 5px;
   color: white;
   border-radius: 5px;
 }
@@ -69,6 +79,7 @@ input {
   float: right;
   height: 60px;
   line-height: 60px;
+  margin-right: 10px;
 }
 
 .login_link input[type="text"] {
@@ -101,6 +112,53 @@ a.login_link {
   line-height: 33px;
 }
 
-#question_input {
+#create_question_form input[type="text"] {
   width: 400px;
+}
+
+#view_all_surveys tr {
+  height: 30px;
+}
+
+#edit_survey {
+  min-height: 500px;
+  position: relative;
+}
+
+#edit_survey input[type="submit"] {
+  position: absolute;
+  right: 50%;
+  bottom: 0;
+}
+
+#edit_survey_left {
+  float:left;
+}
+
+#edit_survey_right {
+  float:left;
+}
+
+.edit_survey_question {
+  margin-bottom: 50px;
+}
+
+#clear {
+  clear: both;
+  padding: 50px 0px;
+}
+
+#edit_survey_right label {
+  display: block;
+  float:left;
+  width: 100px;
+  line-height: 33px;
+}
+
+#edit_survey_right input[type="text"] {
+  width: 300px;
+  height: 26px;
+}
+#view_all_surveys tr:nth-child(even) {
+  background-color: #ccc;
 }

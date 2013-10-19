@@ -4,6 +4,7 @@
   <p><%= survey.title %></p>
 <% end %>
 <h2>Surveys you've taken</h2>
-<% current_user.takensurveys.each do |survey| %>
+<% current_user.takensurveys.each do |takensurvey| %>
+  <% survey = Survey.find(takensurvey.survey_id) %>
   <p><%= survey.title %></p>
 <% end %>

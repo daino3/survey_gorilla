@@ -1,9 +1,25 @@
-<h1>Choose a Survey</h1>
-<table>
+<h1>Choose a Survey to Take</h1>
+<table id="view_all_surveys" width="100%">
+  <col width="600">
+  <col width="100">
+  <col width="100">
+  <% if current_user %>
+    <tr>
+      <th>Survey</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  <% else %>
+    <tr>
+      <th>Survey</th>
+      <th></th>
+      <th></th>
+    </tr>
+  <% end %>
   <% @surveys.each do |survey| %>
     <tr>
       <td><a href="/take_survey/<%= survey.id %>"><%= survey.title %></a></td>
-      <% if survey.creator_id == current_user.id %>
+      <% if current_user && survey.creator_id == current_user.id %>
         <td><a href="/edit_survey/<%= survey.id %>">Edit</a></td>
         <td><a href="/delete_survey/<%= survey.id %>">Delete</a></td>
       <% else %>

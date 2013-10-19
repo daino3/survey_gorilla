@@ -1,5 +1,6 @@
 get '/' do
   if current_user
+
     erb :home
   else
     erb :index
@@ -7,50 +8,67 @@ get '/' do
 end
 
 get '/create_survey' do
-  current_user
-  erb :create_survey
+  if current_user
+    current_user
+    erb :create_survey
+  else
+    redirect '/'
+  end
 end
 
 post '/create_survey' do
-  @survey = Survey.create(title: params[:survey_title], creator_id: current_user.id)
-  puts "____________________________________"
-  p current_user.id
-  puts "____________________________________"
-  if params[:image] 
-    @photo = Photo.create(title: params[:image_title], file: params[:image])
-    @survey.photo = @photo
+  if current_user
+    @survey = Survey.create(title: params[:survey_title], creator_id: current_user.id)
+    if params[:image] 
+      @photo = Photo.create(title: params[:image_title], file: params[:image])
+      @survey.photo = @photo
+    end
+    erb :create_question
+  else
+    redirect '/'
   end
-
-  erb :create_question
 end
 
 get '/create_question' do
-  @survey = Survey.find(params[:survey])
-  @photo = @survey.photo
-  erb :create_question
+  if current_user
+    @survey = Survey.find(params[:survey])
+    @photo = @survey.photo
+    erb :create_question
+  else
+    redirect '/'
+  end
 end
 
 post '/create_question' do
-  @survey = Survey.find(params[:survey])
-  @question = Question.create(prompt: params[:question], survey_id: @survey.id)
-  create_choices(params[:choice_input], @question.id)
+  if current_user
+    @survey = Survey.find(params[:survey])
+    @question = Question.create(prompt: params[:question], survey_id: @survey.id)
+    create_choices(params[:choice_input], @question.id)
 
-  if params[:submit] == "Finish"
-    redirect "/view_survey/#{@survey.id}"
-  elsif params[:submit] == "Add Question"
-    @photo = @survey.photo
-    erb :create_question
+    if params[:submit] == "Finish"
+      redirect "/view_survey/#{@survey.id}"
+    elsif params[:submit] == "Add Question"
+      @photo = @survey.photo
+      erb :create_question
+    end
+  else
+    redirect '/'
   end
 end
 
 get '/take_survey/:survey_id' do
   @survey = Survey.find(params[:survey_id])
-  erb :take_survey
+  if current_user
+    erb :take_survey
+  else
+    redirect "/view_survey/#{@survey.id}"
+  end
 end
 
 post '/take_survey' do
   @survey = Survey.find(params[:survey_id])
   create_responses(params[:response_input], current_user.id)
+  Takensurvey.create(survey_id: @survey.id, user_id: current_user.id)
   redirect "/view_survey/#{@survey.id}"
 end
 
@@ -60,6 +78,19 @@ get '/view_survey/:survey_id' do
 end
 
 get '/view_all_surveys' do 
-  @surveys = Survey.all
+  @surveys = Survey.order("updated_at DESC")
   erb :view_all_surveys
+end
+
+get '/edit_survey/:survey_id' do 
+  @survey = Survey.find(params[:survey_id])
+  erb :edit_survey
+end
+
+post '/edit_survey' do
+  p params
+end
+
+post '/delete_question' do
+  Question.destroy(params[:id])
 end
