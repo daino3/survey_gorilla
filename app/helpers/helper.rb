@@ -13,3 +13,7 @@ def create_responses(responses_hash, user_id)
     Response.create(choice_id: value, user_id: current_user.id)
   end
 end
+
+def time_ago(date)
+  date
+end

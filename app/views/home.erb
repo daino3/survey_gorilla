@@ -4,7 +4,21 @@
   <p><%= survey.title %></p>
 <% end %>
 <h2>Surveys you've taken</h2>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Taken</th>
+  </tr>
 <% current_user.takensurveys.each do |takensurvey| %>
   <% survey = Survey.find(takensurvey.survey_id) %>
-  <p><%= survey.title %></p>
+  <% time_diff = TimeDifference.between(Time.now, takensurvey.created_at).in_days.to_i %>
+  <tr>
+    <td><%= survey.title %></td>
+    <% if time_diff == 0 %>
+      <td>Today</td>
+    <% else %>
+      <td><%= time_diff %> days ago %></td>
+    <% end %>
+  </tr>
 <% end %>
+</table>
