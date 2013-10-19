@@ -13,19 +13,15 @@ post '/login' do
   @user = User.find_by_email(params[:email])
   if @user.authenticate(params[:password])
     session[:user_id] = @user.id
-    redirect "/create_survey"
-  else
-    redirect '/'
   end
+  redirect '/'
 end
 
 post '/signup' do
   @user = User.create(params[:input])
   if @user.valid?
     session[:user_id] = @user.id
-    redirect '/create_survey'
-  else
-    redirect '/'
   end
+  redirect '/'
 end
 

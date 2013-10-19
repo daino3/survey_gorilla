@@ -1,24 +1,50 @@
-<h1>Welcome Back!</h1>
-<h2>Surveys you've created</h2>
-<% current_user.createdsurveys.each do |survey| %>
-  <p><%= survey.title %></p>
-<% end %>
-<h2>Surveys you've taken</h2>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Taken</th>
-  </tr>
-<% current_user.takensurveys.each do |takensurvey| %>
-  <% survey = Survey.find(takensurvey.survey_id) %>
-  <% time_diff = TimeDifference.between(Time.now, takensurvey.created_at).in_days.to_i %>
-  <tr>
-    <td><%= survey.title %></td>
-    <% if time_diff == 0 %>
-      <td>Today</td>
-    <% else %>
-      <td><%= time_diff %> days ago %></td>
+<h1>Welcome <%= current_user.username.capitalize %>!</h1>
+<% if current_user.createdsurveys.count > 0 %>
+  <h2>Surveys you've created</h2>
+  <table width="100%">
+    <col width="300">
+    <col width="100">
+    <tr>
+      <th>Title</th>
+      <th>Created</th>
+    </tr>
+    <% current_user.createdsurveys.each do |survey| %>
+      <% time_diff = TimeDifference.between(Time.now, survey.created_at).in_days.to_i %>
+      <tr>
+        <td><a href="/edit_survey/<%= survey.id %>"><%= survey.title %></a></td>
+        <% if time_diff == 0 %>
+          <td>Today</td>
+        <% else %>
+          <td><%= time_diff %> days ago %></td>
+        <% end %>
+      </tr>
     <% end %>
-  </tr>
+  </table>
+<% else %>
+  <h2>You haven't created any surveys yet! <a href="/create_survey">Create one now</a></h2>
 <% end %>
-</table>
+<% if current_user.takensurveys.count > 0 %>
+  <h2>Surveys you've taken</h2>
+  <table width="100%">
+    <col width="300">
+    <col width="100">
+    <tr>
+      <th>Title</th>
+      <th>Taken</th>
+    </tr>
+  <% current_user.takensurveys.each do |takensurvey| %>
+    <% survey = Survey.find(takensurvey.survey_id) %>
+    <% time_diff = TimeDifference.between(Time.now, takensurvey.created_at).in_days.to_i %>
+    <tr>
+      <td><a href="/view_survey/<%= survey.id %>"><%= survey.title %></a></td>
+      <% if time_diff == 0 %>
+        <td>Today</td>
+      <% else %>
+        <td><%= time_diff %> days ago %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+  <h2>You haven't taken any surveys yet! <a href="/view_all_surveys">Take one now</a></h2>
+<% end %>

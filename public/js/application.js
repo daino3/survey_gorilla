@@ -18,8 +18,13 @@ $(document).ready(function() {
 
   //remove a question
   $('.deleteQ').on('click', function() {
-    $(this).parent().remove();
-    var data = {id: $(this).next('span').text()}
-    $.post('/delete_question', data)
+    if (confirm('This will remove your question immediately. Are you sure?')) {
+      $(this).parent().remove();
+      var data = {id: $(this).next('span').text()}
+      $.post('/delete_question', data)
+    } else {
+      
+    }
+
   });
 });
