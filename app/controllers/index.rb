@@ -82,9 +82,9 @@ get '/view_survey/:survey_id' do
   erb :view_survey
 end
 
-get '/view_all_surveys' do 
+get '/view_all_surveys_take' do 
   @surveys = Survey.order("updated_at DESC")
-  erb :view_all_surveys
+  erb :view_all_surveys_take
 end
 
 get '/edit_survey/:survey_id' do
