@@ -1,14 +1,16 @@
 <div class="navbar">
- <ul>
-  <li><a href='/'> Survey </a></li> 
-  <li>
-    <% if current_user %>
-      <a href='/logout'>Logout</a>
-      <a href='#'>Profile</a>
-      <a href='/createsurvey/<%= current_user.id %>'>Create Survey</a>
-    <% else %>
-      <a href='/login'>Login</a>
-    <% end %>
-  </li> 
-  </ul>
+  <a href="/"><img src="/images/henry_logo.png" height="60px"></a>
+  <% if current_user %>
+    <a href='/create_survey'>Create Survey</a>
+    <a href='/view_all_surveys'>Take Survey</a>
+    <a href='/logout' class="login_link">Logout</a>
+  <% else %>
+    <div class="login_link">
+      <form action="/login" method="post">
+        <input type="email" name="email" id="login_email" placeholder="email">
+        <input type="password" name="password" placeholder="password">
+        <input type="submit" value="Login">
+      </form>
+    </div>
+  <% end %>
 </div>

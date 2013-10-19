@@ -1,8 +1,8 @@
 
   <h1><%= @survey.title %></h1>
   <p><img src="<%= @photo.file.url(:thumb) if @photo %>"></p>
-  <form action="create_question" method="post">
-    <label for="question_input">Question:</label><br>
+  <form action="create_question" method="post" id="create_question_form">
+    <label for="question_input">Question:</label>
     <input type="text" name="question" id="question_input"><br><br>
     
     <input type="hidden" name="survey" value="<%= @survey.id %>">
