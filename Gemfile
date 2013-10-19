@@ -19,7 +19,7 @@ gem 'shotgun'
 
 gem 'bcrypt-ruby', '3.0.0'
 gem 'carrierwave'
-gem 'mini_magick', '3.5.0'
+gem 'mini_magick'
 
 group :test do
   gem 'faker'

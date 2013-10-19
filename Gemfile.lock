@@ -87,7 +87,7 @@ DEPENDENCIES
   bcrypt-ruby (= 3.0.0)
   carrierwave
   faker
-  mini_magick (= 3.5.0)
+  mini_magick
   pg
   rake
   rspec

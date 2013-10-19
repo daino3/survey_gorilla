@@ -12,7 +12,7 @@ end
 post '/login' do
   @user = User.find_by_email(params[:email])
   if @user.authenticate(params[:password])
-    session[:id] = @user.id
+    session[:user_id] = @user.id
     redirect "/create_survey"
   else
     redirect '/'
