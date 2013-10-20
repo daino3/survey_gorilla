@@ -1,5 +1,6 @@
 html {
   font-family: Verdana;
+  background-color: gainsboro;
 }
 
 a {
@@ -10,6 +11,7 @@ a {
   width: 960px;
   padding: 0px 20px 20px 20px;
   border: 1px dotted black;
+  background-color: white;
 }
 
 th {
@@ -43,7 +45,7 @@ th {
 
 input[type="submit"] {
   border: none;
-  background-color: #008cd2;
+  background-color: firebrick;
   padding: 10px 5px;
   color: white;
   border-radius: 5px;
@@ -54,7 +56,7 @@ input[type="submit"] {
 }
 
 .navbar {
-  background: black;
+  background: steelblue;
   padding: 5px 0px 5px 0px;
   width: 100%;
   height: 60px;
@@ -99,6 +101,14 @@ a.login_link {
 #signup {
   margin: 0 auto;
   width: 300px;
+}
+
+#signup h1 {
+  text-align: center;
+}
+
+#signup input[type="submit"] {
+  margin: auto;
 }
 
 #signup input[type="text"], #signup input[type="email"], #signup input[type="password"] {

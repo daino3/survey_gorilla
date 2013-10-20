@@ -13,7 +13,7 @@
       <td><a href="/take_survey/<%= survey.id %>"><%= survey.title %></a></td>
       <% if current_user && survey.creator_id == current_user.id %>
         <td><a href="/edit_survey/<%= survey.id %>">Edit</a></td>
-        <td><a href="/delete_survey/<%= survey.id %>">Delete</a></td>
+        <td><a href="/delete_survey/<%= survey.id %>?current_page=<%= request.path_info %>">Delete</a></td>
       <% else %>
         <td></td>
         <td></td>
