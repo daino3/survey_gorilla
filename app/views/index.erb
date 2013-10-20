@@ -1,7 +1,11 @@
 <div id="login_page">
-
   <div id="signup">
     <h1>Sign up</h1>
+    <% if @errors && @errors.count > 0 %>
+      <% @errors.each do |error| %>
+        <p id="signup_error"><%= error %></p>
+      <% end %>
+    <% end %>
     <form action='/signup' method='POST'>
       <!-- <label for="signup_username">Name</label><br> -->
       <input placeholder="Name" type="text" name="input[username]" id="signup_username"><br>

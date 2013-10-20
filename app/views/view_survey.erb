@@ -6,7 +6,7 @@
   <table id="results_table">
   <% @survey.questions.each do |question| %>
     <tr class="spacer"></tr>
-    <tr><td><%= question.prompt %></td><td></td></tr>
+    <tr><td class="view_survey_question"><%= question.prompt %></td><td></td></tr>
     <tr>
       <th>Option</th>
       <th>Percent</th>

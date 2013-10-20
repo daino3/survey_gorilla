@@ -45,7 +45,7 @@ th {
 
 input[type="submit"] {
   border: none;
-  background-color: firebrick;
+  background-color: steelblue;
   padding: 10px 5px;
   color: white;
   border-radius: 5px;
@@ -56,7 +56,7 @@ input[type="submit"] {
 }
 
 .navbar {
-  background: steelblue;
+  background: black;
   padding: 5px 0px 5px 0px;
   width: 100%;
   height: 60px;
@@ -172,3 +172,26 @@ a.login_link {
 #view_all_surveys tr:nth-child(even) {
   background-color: #ccc;
 }
+
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+ }
+
+ .view_survey_question {
+  font-size: 20px;
+  font-weight: bold;
+ }
+
+ #login_error {
+  color: red;
+  margin-right: 20px;
+ }
+
+ #signup_error {
+  color: red;
+ }
