@@ -14,8 +14,10 @@
         <td><a href="/edit_survey/<%= survey.id %>"><%= survey.title %></a></td>
         <% if time_diff == 0 %>
           <td>Today</td>
+        <% elsif time_diff == 1 %>
+          <td>Yesterday</td>
         <% else %>
-          <td><%= time_diff %> days ago %></td>
+          <td><%= time_diff %> days ago</td>
         <% end %>
       </tr>
     <% end %>
@@ -39,8 +41,10 @@
       <td><a href="/view_survey/<%= survey.id %>"><%= survey.title %></a></td>
       <% if time_diff == 0 %>
         <td>Today</td>
+      <% elsif time_diff == 1 %>
+        <td>Yesterday</td>
       <% else %>
-        <td><%= time_diff %> days ago %></td>
+        <td><%= time_diff %> days ago</td>
       <% end %>
     </tr>
   <% end %>
