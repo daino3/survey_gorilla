@@ -195,3 +195,18 @@ a.login_link {
  #signup_error {
   color: red;
  }
+
+ .chart_div {
+  position: relative;
+  bottom: 70px;
+  right: 40px;
+ }
+
+.graph {
+  text-align: center;
+}
+
+.view_survey_question {
+  font-style: italic;
+}
+

@@ -25,8 +25,4 @@ $(document).ready(function() {
     } else { 
     }
   });
-
-  //bar charts
-  var data = [4, 8, 15, 16, 23, 42];
-  var chart = d3.select("body").append("div").attr("class", "chart");
 });

@@ -1,28 +1,58 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
   <h1><%= @survey.title %></h1>
   <% if @survey.photo %>
     <img src="<%= @survey.photo.file.url(:thumb) %>">
   <% end %>
-  <table id="results_table">
+  <table id="results_table" width="100%">
+    <col width="400px">
+    <col width="100px">
+    <% counter = 1 %>
   <% @survey.questions.each do |question| %>
-    <tr class="spacer"></tr>
-    <tr><td class="view_survey_question"><%= question.prompt %></td><td></td></tr>
-    <tr>
-      <th>Option</th>
-      <th>Percent</th>
-    </tr>
-    <% total_responses = question.responses.count %>
-    <% question.choices.each do |choice| %>
+  <script type="text/javascript">
+    percentages<%= counter %> = [['option', 'percent']]
+  </script>
+    <div class="question_results">
+      <tr class="spacer"></tr>
+      <tr><td class="view_survey_question" colspan="3"><%= question.prompt %></td><td></td></tr>
+      <tr>
+        <th>Option</th>
+        <th>Percent</th>
+        <th></th>
+      </tr>
+      <% total_responses = question.responses.count %>
+      <% question.choices.each do |choice| %>
       <% choice_responses = choice.responses.count %>
-        <tr>
-          <td><%= choice.option %></td>
-          <% if choice_responses > 0 %>
-            <td><%= (((choice_responses.to_f/total_responses.to_f)*100).round(0)) %>%</td>
-          <% else %>
-            <td>0%</td>
-          <% end %>
-        </tr>
-    <% end %>
+      <script type="text/javascript">
+        percentages<%= counter %>.push(['<%= choice.option %>', <%= (((choice_responses.to_f/total_responses.to_f)*100).round(0)).to_json %>])
+      </script>
+          <tr>
+            <td><%= choice.option %></td>
+            <% if choice_responses > 0 %>
+              <td><%= (((choice_responses.to_f/total_responses.to_f)*100).round(0)) %>%</td>
+            <% else %>
+              <td>0%</td>
+            <% end %>
+      <% end %>
+      <script type="text/javascript">
+        google.load("visualization", "1", {packages:["corechart"]});
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable(percentages<%= counter %>);
+          var options = {
+            backgroundColor: 'none',
+            legend: 'none',
+            vAxis: {textStyle: {color: 'none'}},
+            hAxis: {minValue: 0, maxValue: 100}
+          };
+          var chart = new google.visualization.BarChart(document.getElementById('chart_div<%= counter %>'));
+          chart.draw(data, options);
+      }
+    </script>
+    <td rowspan="<%= question.choices.count %>"><div id="chart_div<%= counter %>" class="chart_div" style="width: 400px; height: 120px;"></div></td>
+    </tr>
+  </div>
+  <% counter += 1 %>
   <% end %>
   </table>
 
