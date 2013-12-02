@@ -25,6 +25,6 @@ gem 'mini_magick'
 gem 'time_difference'
 
 group :test do
-  gem 'faker'
-  gem 'rspec'
+  gem 'faker',:require => false
+  gem 'rspec',:require => false
 end
