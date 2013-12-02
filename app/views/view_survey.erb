@@ -21,19 +21,21 @@
         <th></th>
       </tr>
       <% total_responses = question.responses.count %>
-      <% question.choices.each do |choice| %>
-      <% choice_responses = choice.responses.count %>
-      <script type="text/javascript">
-        percentages<%= counter %>.push(['<%= choice.option %>', <%= (((choice_responses.to_f/total_responses.to_f)*100).round(0)).to_json %>])
-      </script>
-          <tr>
-            <td><%= choice.option %></td>
-            <% if choice_responses > 0 %>
-              <td><%= (((choice_responses.to_f/total_responses.to_f)*100).round(0)) %>%</td>
-            <% else %>
-              <td>0%</td>
-            <% end %>
-      <% end %>
+      <% if question.choices > 0 %>
+        <% question.choices.each do |choice| %>
+        <% choice_responses = choice.responses.count %>
+        <script type="text/javascript">
+          percentages<%= counter %>.push(['<%= choice.option %>', <%= (((choice_responses.to_f/total_responses.to_f)*100).round(0)).to_json %>])
+        </script>
+            <tr>
+              <td><%= choice.option %></td>
+              <% if choice_responses > 0 %>
+                <td><%= (((choice_responses.to_f/total_responses.to_f)*100).round(0)) %>%</td>
+              <% else %>
+                <td>0%</td>
+              <% end %>
+        <% end %>
+      <% end %>  
       <script type="text/javascript">
         google.load("visualization", "1", {packages:["corechart"]});
         google.setOnLoadCallback(drawChart);

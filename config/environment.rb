@@ -10,6 +10,7 @@ require 'rubygems'
 
 require 'uri'
 require 'pathname'
+require 'bcrypt'
 
 require 'pg'
 require 'active_record'
@@ -19,7 +20,7 @@ require 'sinatra'
 require "sinatra/reloader" if development?
 
 require 'erb'
-require 'faker'
+# require 'faker'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 require 'mini_magick'

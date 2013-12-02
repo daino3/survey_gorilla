@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 # PostgreSQL driver
 gem 'pg'
@@ -19,12 +19,12 @@ gem 'rake'
 
 gem 'shotgun'
 
-gem 'bcrypt-ruby', '3.0.0'
+gem 'bcrypt-ruby', '3.1.2'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'time_difference'
 
-group :test do
-  gem 'faker',:require => false
-  gem 'rspec',:require => false
-end
+# group :test do
+#   gem 'faker',:require => false
+#   gem 'rspec',:require => false
+# end
